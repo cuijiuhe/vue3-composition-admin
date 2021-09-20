@@ -7,12 +7,12 @@
 -->
 <template>
   <div class="navbar">
-    <Hamburger
+    <!-- <Hamburger
       id="hamburger-container"
       :is-active="sidebar.opened"
       class="hamburger-container"
       @toggle-click="toggleSideBar"
-    />
+    /> -->
     <BreadCrumb
       id="breadcrumb-container"
       class="breadcrumb-container"
@@ -83,7 +83,6 @@
 
 <script>
 import BreadCrumb from '@/components/bread-crumb/Index.vue'
-import Hamburger from '@/components/hamburger/Index.vue'
 import Screenfull from '@/components/screenfull/Index.vue'
 import LangSelect from '@/components/lang_select/Index.vue'
 import SizeSelect from '@/components/size_select/Index.vue'
@@ -97,7 +96,6 @@ import { useRoute, useRouter } from 'vue-router'
 export default {
   components: {
     BreadCrumb,
-    Hamburger,
     Screenfull,
     LangSelect,
     SizeSelect

@@ -14,7 +14,7 @@
     <el-scrollbar wrap-class="scrollbar-wrapper">
       <el-menu
         :collapse="!isCollapse"
-        :unique-opened="true"
+        :unique-opened="false"
         :default-active="activeMenu"
         :background-color="variables.menuBg"
         :text-color="variables.menuText"
@@ -30,13 +30,21 @@
         />
       </el-menu>
     </el-scrollbar>
+    <Hamburger
+      id="hamburger-container"
+      :is-active="sidebar.opened"
+      class="hamburger-container bar-bottom"
+      @toggle-click="toggleSideBar"
+    />
   </div>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue'
+import { computed, defineComponent, reactive, toRefs } from 'vue'
 import SidebarItem from './SidebarItem.vue'
 import SidebarLogo from './SidebarLogo.vue'
+import Hamburger from '@/components/hamburger/Index.vue'
+import { AppActionTypes } from '@/store/modules/app/action-types'
 import variables from '@/styles/_variables.scss'
 import { useStore } from '@/store'
 import { useRoute } from 'vue-router'
@@ -44,6 +52,7 @@ import { useRoute } from 'vue-router'
 export default defineComponent({
   components: {
     SidebarItem,
+    Hamburger,
     SidebarLogo
   },
   setup() {
@@ -82,6 +91,11 @@ export default defineComponent({
     const isCollapse = computed(() => {
       return sidebar.value.opened
     })
+    const state = reactive({
+      toggleSideBar: () => {
+        store.dispatch(AppActionTypes.ACTION_TOGGLE_SIDEBAR, false)
+      }
+    })
 
     return {
       sidebar,
@@ -90,7 +104,8 @@ export default defineComponent({
       menuActiveTextColor,
       variables,
       activeMenu,
-      isCollapse
+      isCollapse,
+      ...toRefs(state)
     }
   }
 })
@@ -138,5 +153,12 @@ export default defineComponent({
   border: none;
   height: 100%;
   width: 100% !important;
+}
+.bar-bottom {
+  height: 30px;
+  position: absolute;
+  bottom: 76px;
+  left: 30%;
+  cursor: pointer;
 }
 </style>

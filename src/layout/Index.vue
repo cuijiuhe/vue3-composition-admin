@@ -10,6 +10,12 @@
     :class="classObj"
     class="app-wrapper"
   >
+    <header>
+      <img
+        class="logo"
+        src="@/assets/theme/logo.png"
+      >
+    </header>
     <div
       v-if="classObj.mobile && sidebar.opened"
       class="drawer-bg"
@@ -112,6 +118,16 @@ export default defineComponent({
   height: 100%;
   width: 100%;
 }
+header {
+  background: $themeBlue;
+  height: 60px;
+  padding: 0 20px;
+  img {
+    margin-top: 10px;
+    width: 120px;
+    height: 40px;
+  }
+}
 
 .drawer-bg {
   background: #000;
@@ -124,10 +140,11 @@ export default defineComponent({
 }
 
 .main-container {
-  min-height: 100%;
   transition: margin-left .28s;
   margin-left: $sideBarWidth;
   position: relative;
+  height: calc(100vh - 60px);
+  overflow: hidden;
 }
 
 .sidebar-container {
@@ -136,7 +153,7 @@ export default defineComponent({
   height: 100%;
   position: fixed;
   font-size: 0px;
-  top: 0;
+  top: 60px;
   bottom: 0;
   left: 0;
   z-index: 1001;
@@ -154,15 +171,15 @@ export default defineComponent({
 
 .hideSidebar {
   .main-container {
-    margin-left: 54px;
+    margin-left: 52px;
   }
 
   .sidebar-container {
-    width: 54px !important;
+    width: 52px !important;
   }
 
   .fixed-header {
-    width: calc(100% - 54px)
+    width: calc(100% - 52px)
   }
 }
 

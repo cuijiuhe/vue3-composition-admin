@@ -22,7 +22,7 @@ interface LayoutSettings {
   // You can customize below settings :)
   const layoutSettings: LayoutSettings = {
     showSettings: true,
-    showTagsView: true,
+    showTagsView: false,
     fixedHeader: false,
     showSidebarLogo: true,
     sidebarTextTheme: true,

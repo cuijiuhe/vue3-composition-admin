@@ -29,24 +29,7 @@
 
 > vue3-composition-admin 是一个管理端模板解决方案，它是基于vue3,ts和element-plus，项目都是以composition api风格编写。
 
-## 简介
 
-项目的基础版本出自于源于花裤衩大佬的 vue-element-admin。
-
-版本：
-
-vue2+js版本：[vue-element-admin](https://github.com/PanJiaChen/vue-element-admin)
-
-vue2+ts版本：[vue-typescript-admin-template](https://github.com/Armour/vue-typescript-admin-template) 
-
-vue3 发布之后，性能增强，速度vue2的倍数，打包体积都在减小（treeshaking），composition api 增加了项目可读性。
-
-项目目的：
-
-- 学习vue3+ts
-- 保持 composition api 风格
-
-在线demo演示地址：https://admin-tmpl-test.rencaiyoujia.cn/
 
 
 ### 功能
