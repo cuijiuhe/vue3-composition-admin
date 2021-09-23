@@ -8,15 +8,27 @@
 
 <template>
   <div class="login-container">
-    <video
+    <!-- <video
       poster="../../../assets/images/login/video-cover.jpeg"
       loop
       autoplay
       muted
     >
       <source src="../../../assets/images/login/night.mp4">
-    </video>
-
+    </video> -->
+    <transition-group
+      class="login-bg"
+      name="flip-list"
+      tag="ul"
+    >
+      <li
+        class="list-item"
+        v-for="bg in loginBgs"
+        :key="bg"
+      >
+        <img :src="bg">
+      </li>
+    </transition-group>
     <el-form
       ref="loginFormRef"
       :model="loginForm"
@@ -134,7 +146,8 @@ import {
   watch,
   ref,
   nextTick,
-  toRefs
+  toRefs,
+  Ref
 } from 'vue'
 import LangSelect from '@/components/lang_select/Index.vue'
 import SocialSign from './components/SocialSignin.vue'
@@ -172,6 +185,18 @@ export default defineComponent({
       redirect: '',
       otherQuery: {}
     })
+    const swiger = reactive({
+      // 轮播数组;
+      index: 0
+    })
+    const loginBgs: Ref<string[]> = ref([])
+    const loginBg = ref([
+      require('@/assets/theme/bg_01.png'),
+      require('@/assets/theme/bg_03.png'),
+      require('@/assets/theme/bg_04.png'),
+      require('@/assets/theme/bg_05.png'),
+      require('@/assets/theme/bg_06.png')
+    ])
 
     const methods = reactive({
       validateUsername: (rule: any, value: string, callback: Function) => {
@@ -236,6 +261,18 @@ export default defineComponent({
       }, {} as LocationQuery)
     }
 
+    function startChange() {
+      setInterval(() => {
+        if (swiger.index < loginBg.value.length - 1) {
+          swiger.index++
+        } else {
+          swiger.index = 0
+        }
+        loginBgs.value.splice(0, 1, loginBg.value[swiger.index])
+        console.log(loginBgs, '273')
+      }, 3000)
+    }
+
     watch(() => route.query, query => {
       if (query) {
         state.redirect = query.redirect?.toString() ?? ''
@@ -244,6 +281,11 @@ export default defineComponent({
     })
 
     onMounted(() => {
+      // 初始化轮播
+      console.log(loginBg.value, '2222222')
+      loginBgs.value = [loginBg.value[0]]
+      console.log(loginBgs, 's')
+      startChange()
       if (state.loginForm.username === '') {
         (userNameRef.value as any).focus()
       } else if (state.loginForm.password === '') {
@@ -257,6 +299,7 @@ export default defineComponent({
       loginFormRef,
       ...toRefs(state),
       ...toRefs(methods),
+      loginBgs,
       t
     }
   }
@@ -271,7 +314,7 @@ export default defineComponent({
       color: $loginCursorColor;
     }
     input::first-line {
-      color: $lightGray;
+      color: #000;
     }
   }
 }
@@ -288,7 +331,7 @@ export default defineComponent({
       border: 0px;
       border-radius: 0px;
       padding: 12px 5px 12px 15px;
-      color: $lightGray;
+      color: #000;
       caret-color: $loginCursorColor;
       -webkit-appearance: none;
 
@@ -325,16 +368,20 @@ export default defineComponent({
   }
   .login-form {
     position: relative;
-    width: 520px;
+    width: 366px;
+    right: -25%;
+    background-color: hsla(0,0%,100%,.6);
     max-width: 100%;
-    padding: 160px 35px 0;
+    padding: 14px 35px 0;
+    border-radius: 8px;
     margin: 0 auto;
+    margin-top: 160px;
     overflow: hidden;
   }
 
   .tips {
     font-size: 14px;
-    color: #fff;
+    color: #000;
     margin-bottom: 10px;
 
     span {
@@ -357,14 +404,14 @@ export default defineComponent({
 
     .title {
       font-size: 26px;
-      color: $lightGray;
+      color: #000;
       margin: 0px auto 40px auto;
       text-align: center;
       font-weight: bold;
     }
 
     .set-language {
-      color: #fff;
+      color: #000;
       position: absolute;
       top: 3px;
       font-size: 18px;
@@ -394,5 +441,34 @@ export default defineComponent({
       display: none;
     }
   }
+
+  .flip-list-enter-active, .flip-list-leave-active {
+    transition: all 4s;
+  }
+  .flip-list-enter-to {
+      opacity: 0;
+  }
+  .flip-list-enter-from-active {
+    opacity: 1;
+  }
 }
+
+  // .list-item-leave-active, .list-item-leave-to {
+  //   transition: all 3s;
+  // }
+  // .list-item-enter-form, .list-item-leave-to {
+  //     opacity: 0;
+  // }
+  .login-bg li {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .login-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 </style>

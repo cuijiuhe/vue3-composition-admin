@@ -46,6 +46,7 @@ module.exports = {
     'vue/match-component-file-name': 'error',
     'vue/object-curly-spacing': 'error',
     'no-useless-escape': 'off',
+    '@typescript-eslint/no-unused-vars': 'off',
     '@typescript-eslint/no-this-alias': [
       'error',
       {
