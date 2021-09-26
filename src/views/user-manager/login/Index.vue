@@ -441,24 +441,14 @@ export default defineComponent({
       display: none;
     }
   }
-
-  .flip-list-enter-active, .flip-list-leave-active {
-    transition: all 4s;
+  .flip-list-enter-active,
+  .flip-list-leave-active {
+    transition: opacity 3s ease;
   }
-  .flip-list-enter-to {
-      opacity: 0;
+  .flip-list-enter-from,
+  .flip-list-leave-to {
+    opacity: 0;
   }
-  .flip-list-enter-from-active {
-    opacity: 1;
-  }
-}
-
-  // .list-item-leave-active, .list-item-leave-to {
-  //   transition: all 3s;
-  // }
-  // .list-item-enter-form, .list-item-leave-to {
-  //     opacity: 0;
-  // }
   .login-bg li {
     position: absolute;
     top: 0;
@@ -471,4 +461,5 @@ export default defineComponent({
     height: 100%;
     object-fit: cover;
   }
+}
 </style>
