@@ -48,12 +48,13 @@ export const actions: ActionTree<UserState, RootState> & Actions = {
     { commit }: AugmentedActionContext,
     userInfo: { username: string, password: string }
   ) {
-    let { username, password } = userInfo
-    username = username.trim()
-    await loginRequest({ username, password }).then(async(res) => {
-      if (res?.code === 0 && res.data.accessToken) {
-        setToken(res.data.accessToken)
-        commit(UserMutationTypes.SET_TOKEN, res.data.accessToken)
+    const { username, password } = userInfo
+    const loginname = username.trim()
+    await loginRequest({ loginname, password }).then(async(res) => {
+      if (res?.code === 200 && res.token) {
+        console.log(res.token)
+        setToken(res.token)
+        commit(UserMutationTypes.SET_TOKEN, res.token)
       }
     }).catch((err) => {
       console.log(err)

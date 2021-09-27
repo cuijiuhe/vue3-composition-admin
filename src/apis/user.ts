@@ -12,7 +12,7 @@ import { LoginModel } from '@/views/user-manager/login/model/loginModel'
 import { RequestParams, ContentType, Method } from 'axios-mapper'
 
 export const loginRequest = (userInfo: RequestParams) => {
-  return https(false).request<RootObject<LoginModel>>('user/login', Method.POST, userInfo, ContentType.json)
+  return https(false).request<RootObject<LoginModel>>('basic/user/login', Method.POST, userInfo, ContentType.json)
 }
 
 export const userInfoRequest = () => {

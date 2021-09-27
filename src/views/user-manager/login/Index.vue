@@ -269,7 +269,6 @@ export default defineComponent({
           swiger.index = 0
         }
         loginBgs.value.splice(0, 1, loginBg.value[swiger.index])
-        console.log(loginBgs, '273')
       }, 3000)
     }
 

@@ -9,6 +9,7 @@
 import { useStore } from '@/store'
 import HttpClient, { HttpClientConfig } from 'axios-mapper'
 import networkConfig from '@/config/default/net.config'
+console.log(networkConfig.host)
 const https = (hasToken: Boolean = true) => {
   const config: HttpClientConfig = {
     baseURL: networkConfig.host,
