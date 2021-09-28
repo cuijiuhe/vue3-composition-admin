@@ -16,7 +16,7 @@ export const loginRequest = (userInfo: RequestParams) => {
 }
 
 export const userInfoRequest = () => {
-  return https().request<RootObject<UserInfoModel>>('user/userInfo', Method.GET, undefined, ContentType.form)
+  return https().request<RootObject<UserInfoModel>>('basic/user/info', Method.GET, undefined, ContentType.form)
 }
 
 export const getUsers = (user: any) => {

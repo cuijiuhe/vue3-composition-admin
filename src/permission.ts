@@ -38,10 +38,11 @@ router.beforeEach(async(to: RouteLocationNormalized, _: RouteLocationNormalized,
   if (useStore().state.user.token) {
     if (to.path === '/login') {
       // If is logged in, redirect to the home page
-      next({ path: '/' })
+      next({ path: '/dashboard' })
       NProgress.done()
     } else {
       // Check whether the user has obtained his permission roles
+      console.log(store.state.user.roles.length, '------')
       if (store.state.user.roles.length === 0) {
         try {
           // Note: roles must be a object array! such as: ['admin'] or ['developer', 'editor']
@@ -56,7 +57,7 @@ router.beforeEach(async(to: RouteLocationNormalized, _: RouteLocationNormalized,
           // Hack: ensure addRoutes is complete
           // Set the replace: true, so the navigation will not leave a history record
           next({ ...to, replace: true })
-        } catch (err) {
+        } catch (err: any) {
           // Remove token and redirect to login page
           store.dispatch(UserActionTypes.ACTION_RESET_TOKEN, undefined)
           ElMessage.error(err || 'Has Error')

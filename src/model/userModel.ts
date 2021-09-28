@@ -31,7 +31,7 @@ export interface UserInfoModel {
   name: string
   avatar: string
   introduction: string
-  email: string
+  buttons: string[]
   phone: string
   roles: string[]
 }

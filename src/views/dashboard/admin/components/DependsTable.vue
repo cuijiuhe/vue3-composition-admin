@@ -12,7 +12,7 @@
     shadow="never"
   >
     <div>
-      <span>依赖信息</span>
+      <span>依赖信息1</span>
       <div style="float: right">
         部署时间:{{ updateTime }}
       </div>
@@ -23,7 +23,10 @@
         target="_blank"
         href="https://github.com/vuejs/vue-next"
       >
-        <el-button type="success">
+        <el-button
+          type="success"
+          v-permission="['pay_member_label']"
+        >
           vue3.x
         </el-button>
       </a>
@@ -86,6 +89,7 @@
 <script lang="ts">
 import { defineComponent, reactive, toRefs } from 'vue'
 import { dependencies, devDependencies } from '../../../../../package.json'
+import { permission } from '@/directives/permission/index'
 export default defineComponent({
   setup() {
     const state = reactive({

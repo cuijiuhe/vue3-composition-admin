@@ -56,7 +56,7 @@ import Timeline from './components/Timeline.vue'
 import UserCard from './components/UserCard.vue'
  interface Profile {
   name: string
-  email: string
+  buttons: string[]
   avatar: string
   roles: string
 }
@@ -70,7 +70,7 @@ export default defineComponent({
   setup() {
     const defaultProfile: Profile = {
       name: 'Yours Extra.',
-      email: 'Loading...',
+      buttons: [''],
       avatar: 'Loading...',
       roles: 'Loading...'
     }
@@ -84,8 +84,8 @@ export default defineComponent({
         return store.state.user.name
       },
 
-      email() {
-        return store.state.user.email
+      buttons() {
+        return store.state.user.buttons
       },
       avatar() {
         return store.state.user.avatar
@@ -96,7 +96,7 @@ export default defineComponent({
       getUser: () => {
         dataMap.user = {
           name: dataMap.name(),
-          email: dataMap.email(),
+          buttons: dataMap.buttons(),
           avatar: dataMap.avatar(),
           roles: dataMap.roles().join(' | ')
         }
@@ -116,7 +116,7 @@ export default defineComponent({
 
 // const defaultProfile: IProfile = {
 //   name: 'Loading...',
-//   email: 'Loading...',
+//   buttons: 'Loading...',
 //   avatar: 'Loading...',
 //   roles: 'Loading...'
 // }
@@ -138,8 +138,8 @@ export default defineComponent({
 //     return UserModule.name
 //   }
 
-//   get email() {
-//     return UserModule.email
+//   get buttons() {
+//     return UserModule.buttons
 //   }
 
 //   get avatar() {
@@ -157,7 +157,7 @@ export default defineComponent({
 //   private getUser() {
 //     this.user = {
 //       name: this.name,
-//       email: this.email,
+//       buttons: this.buttons,
 //       avatar: this.avatar,
 //       roles: this.roles.join(' | ')
 //     }

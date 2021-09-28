@@ -11,7 +11,9 @@ import { Directive } from 'vue'
 export const permission: Directive = {
   mounted(el, binding) {
     const { value } = binding
-    const roles = useStore().state.user.roles
+    const roles = useStore().state.user.buttons
+    console.log(value, '-------')
+    console.log(roles, '-------')
     if (value && value instanceof Array && value.length > 0) {
       const permissionRoles = value
       const hasPermission = roles.some((role: any) => {

@@ -75,12 +75,14 @@ export const actions: ActionTree<UserState, RootState> & Actions = {
       throw Error('token is undefined!')
     }
     await userInfoRequest().then((res) => {
-      if (res?.code === 0) {
-        commit(UserMutationTypes.SET_ROLES, res.data.roles)
+      if (res?.code === 200) {
+        console.log(res, '322')
+        const nowRoles = ['admin']
+        commit(UserMutationTypes.SET_ROLES, nowRoles)
         commit(UserMutationTypes.SET_NAME, res.data.name)
         commit(UserMutationTypes.SET_AVATAR, res.data.avatar)
         commit(UserMutationTypes.SET_INTRODUCTION, res.data.introduction)
-        commit(UserMutationTypes.SET_EMAIL, res.data.email)
+        commit(UserMutationTypes.SET_BUTTONS, res.data.buttons)
         return res
       } else {
         throw Error('Verification failed, please Login again.')

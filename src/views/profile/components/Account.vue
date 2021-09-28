@@ -10,8 +10,8 @@
     <el-form-item label="Name">
       <el-input v-model="userInfo.name" />
     </el-form-item>
-    <el-form-item label="Email">
-      <el-input v-model="userInfo.email" />
+    <el-form-item label="buttons">
+      <el-input v-model="userInfo.buttons" />
     </el-form-item>
     <el-form-item>
       <el-button
@@ -30,7 +30,7 @@ import { defineComponent, PropType, reactive, toRefs } from 'vue'
 import { ElMessage } from 'element-plus'
 interface Profile {
   name: string
-  email: string
+  buttons: string[]
   avatar: string
   roles: string
 }

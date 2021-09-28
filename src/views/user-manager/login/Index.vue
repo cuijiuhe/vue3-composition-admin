@@ -171,8 +171,8 @@ export default defineComponent({
     const { t } = useI18n()
     const state = reactive({
       loginForm: {
-        username: 'admin',
-        password: '111111'
+        username: 'portal_test',
+        password: 'portal_test'
       },
       loginRules: {
         username: [{ validator: userNameRef, trigger: 'blur' }],
@@ -233,6 +233,7 @@ export default defineComponent({
           if (valid) {
             state.loading = true
             await store.dispatch(UserActionTypes.ACTION_LOGIN, state.loginForm)
+            console.log(state.redirect)
             router
               .push({
                 path: state.redirect || '/',
